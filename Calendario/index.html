@@ -32,24 +32,48 @@
                         center: 'title',
                         right: 'month,agendaWeek,agendaDay'
                     },
-                    customButtons: {
-                        miBoton: {
-                            text: "Boton 1",
-                            click: function(){
-                                alert("accion del boton")
-                            }
-                        }
-                    }, 
                     dayClick:function(date, jsEvent, view){
+                        $('#btnAgregar').prop("disabled", false);
+                        $('#btnActualizar').prop("disabled", true);
+                        $('#btnEliminar').prop("disabled", true);
+
+
+                        limpiarFormulario();
                         $('#txtFecha').val(date.format());
                         $("#ModalEventos").modal();
                     },
                     events: 'http://localhost:8082/Calendario/eventos.php',
 
                     eventClick:function(calEvent,jsEvent,view){
+
+                      $('#btnAgregar').prop("disabled", true);
+                      $('#btnActualizar').prop("disabled", false);
+                      $('#btnEliminar').prop("disabled", false);
+
                       $('#tituloEvento').html(calEvent.title);
-                      $('#DescripcionEvento').html(calEvent.descripcion);
+                      $('#txtDescripcion').val(calEvent.descripcion);
+                      $('#txtID').val(calEvent.id);
+                      $('#txtTitulo').val(calEvent.title);
+                      $('#txtColor').val(calEvent.color);
+
+                      FechaHora= calEvent.start._i.split(" ");
+                      $('#txtFecha').val(FechaHora[0]);
+                      $('#txtHora').val(FechaHora[1]);
+
                       $("#ModalEventos").modal();
+                    },
+                    editable: true,
+                    eventDrop:function(calEvent){
+                      $('#txtID').val(calEvent.id);
+                      $('#txtTitulo').val(calEvent.title);
+                      $('#txtColor').val(calEvent.color);
+                      $('#txtDescripcion').val(calEvent.descripcion);
+
+                      var FechaHora= calEvent.start.format().split("T");
+                      $('#txtFecha').val(FechaHora[0]);
+                      $('#txtHora').val(FechaHora[1]);
+                      Recolectar();
+                      EnviarInfo('modificar',nuevoEvento, true)
                     }
                 });
             }); 
@@ -68,35 +92,89 @@
         </button>
       </div>
       <div class="modal-body">
-        <div id="descripcionEvento"></div>
-        Fecha: <input type="text" name="txtFecha" id="txtFecha"> <br>
-        Titulo: <input type="text" name="" id="txtTitulo"> <br>
-        Hora: <input type="text" name="" id="txtHora">
-        Descripcion: <textarea name="" id="txtDescripcion" rows="3"></textarea>
-        Color: <input type="color" id="txtColor">
+        <input type="hidden" name="txtID" id="txtID">
+        <input type="hidden" name="txtFecha" id="txtFecha">
+        <div class="form-row">
+          <div class="form-group col-md-8">  
+            <label for="">Titulo: </label> 
+            <input type="text" name="txtTitulo" id="txtTitulo" class="form-control" placeholder="Titulo del evento"> <br>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="">Hora: </label><input type="text" name="txtHora" id="txtHora" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Descripcion: </label>
+          <textarea name="txtDescripcion" id="txtDescripcion" rows="3" class="form-control"></textarea>
+        </div>
+      <div class="form-group">
+        <label for="">Color: </label>
+        <input type="color" id="txtColor" value="#ff0000" style="height: 36px;">
+      </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" id="btnAgregar" class="btn btn-success">Agregar</button>
-        <button type="button" class="btn btn-danger">Danger</button>
-        <button type="button" class="btn btn-warning">Warning</button>
+        <button type="button" id="btnEliminar" class="btn btn-danger">Eliminar</button>
+        <button type="button" id="btnActualizar" class="btn btn-warning">Actualizar</button>
       </div>
     </div>
   </div>
 </div>
 
-<script>$('#btnAgregar').click(function(){
-  var nuevoEvento={
+<script>
+var nuevoEvento;
+$('#btnAgregar').click(function(){
+  Recolectar();
+  EnviarInfo('agregar',nuevoEvento)
+});
+$('#btnEliminar').click(function(){
+  Recolectar();
+  EnviarInfo('eliminar',nuevoEvento)
+});
+$('#btnActualizar').click(function(){
+  Recolectar();
+  EnviarInfo('modificar',nuevoEvento)
+});
+
+function Recolectar(){
+  nuevoEvento={
+    id:$('#txtID').val(),
     title: $('#txtTitulo').val(),
     start: $('#txtFecha').val() + " " + $('#txtHora').val(),
     color: $('#txtColor').val(),
     descripcion: $('#txtDescripcion').val(),
-    txtColor: "#FFFFFF"
+    textColor: "#FFFFFF",
+    end: $('#txtFecha').val() + " " + $('#txtHora').val(),
   };
 
-  $('#Calendario').fullCalendar('renderEvent',nuevoEvento);
-  $("#ModalEventos").modal('toggle');
-});</script>
+}
+
+function EnviarInfo(accion,objEvento){
+  $.ajax({
+    type: 'POST',
+    url: 'eventos.php?accion='+accion,
+    data: objEvento,
+    success: function(msg){
+      if(msg){
+        $('#Calendario').fullCalendar('refetchEvents');
+          if(!modal){
+            $("#ModalEventos").modal('toggle');
+          }
+        }
+      },
+      error:function(){
+        alert("Hay un error..");
+      }
+  });
+}
+function limpiarFormulario(){
+  $('#txtID').val('');
+  $('#txtTitulo').val('');
+  $('#txtColor').val('');
+  $('#txtDescripcion').val('');
+}
+</script>
 
 </body>
 </html>
