@@ -7,64 +7,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DEI</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/moment.min.js"></script>
-
-    <link rel="stylesheet" href="css/fullcalendar.min.css">
-    <link rel="stylesheet" href="css/Style.css">
-    <script src="js/fullcalendar.min.js"></script>
-    <script src="js/es.js"></script>
-
+    <title>Reserva de Laboratorio</title>
+    <!--css--> 
+    <link rel="stylesheet" href="assets/css/fullcalendar.min.css" >
+    <link rel="stylesheet" href="assets/css/Style.css" > 
+        
+    <!--Scripts--> 
+    <script src="Calendario/js/jquery.min.js"></script>
+    <script src="Calendario/js/moment.min.js"></script>
+    <script src="Calendario/js/fullcalendar.min.js"></script>
+    <script src="Calendario/js/es.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    
+<!--BOOTSTRAP 4 CDN-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
-      
+<nav class="navbar navbar-dark bg-dark mb-4">
+<!--UCA logo-->
+<img src="assets/imagenes/ucalogo.png" alt="logoUCA" class="logof" width="50" height="50">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+<!--Inicio-->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Inicio
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Encargado</a>
+          <a class="dropdown-item" href="#">Instructores</a>
+        </div>
+      </li>
+<!--Laboratorios-->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Laboratorios
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Laboratorio L1</a>
+          <a class="dropdown-item" href="#">Laboratorio L2</a>
+          <a class="dropdown-item" href="#">Laboratorio L3</a>
+          </div>
+      </li>
+<!--Reserva-->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Reserva
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Uso personal</a>
+          <a class="dropdown-item" href="#">Reuniones</a>
+          <a class="dropdown-item" href="#">Otro</a>
+        </div>
+      </li>
+<!--Ayuda-->
+      <li class="nav-item">
+        <a class="nav-link" href="#">Ayuda</a>
+      </li>   
+    </ul>
+  </div>
+</nav>
+                <a href="/" class="navbar-brand">Reserva de Laboratorios UCA</a>
+               </nav >
+<!--Contenedor del calendario-->
+    <div class="container">      
         <div class="row">
-            <div class="col-7">
-            <header class="header">
-           <img src="imagenes/uca.png" alt="logo" class="logo">
-        <ul id="menu">
-        <li><a href="#">Inicio</a>
-            <ul>
-                <li><a href="#">Encargado</a>
-                <li><a href="#">Instructores</a>
-            </ul>
-        </li>
-            <li><a href="#">Laboratorios</a>
-            <ul>
-                <li><a href="#">Laboratorio L1</a>
-                <li><a href="#">Laboratorio L2</a>
-                <li><a href="#">Laboratorio L3</a>
-                <li><a href="#">Laboratorio  #</a>
-                <li><a href="#">Laboratorio  #</a>
-            </ul>
-        </li>
-            <li><a href="#">Reserva</a>
-            <ul>
-                <li><a href="#">Uso Personal</a>
-                <li><a href="#">Reuniones</a>
-                <li><a href="#">Otro</a>
-            </ul>
-            </li>
-            <li><a href="#">Agrupaciones</a>
-                <ul>
-                    <li><a href="#">Centros de Computo</a>
-                    <li><a href="#">Laptops</a>
-                    <li><a href="#">Permanencias</a>
-                </ul>
-                <li><a href="#">Ayuda</a>
-                    <ul>
-                        <li><a href="#">Ayuda</a>
-                    </ul>
-        </ul>
-       </header>
-            </div>
-            <div class="col-7"><div id="Calendario"></div></div>
-            <div class="col"></div>
+            <div class="col-20"><div id="Calendario"></div></div>
         </div>
     </div>
 
@@ -80,30 +98,23 @@
                         $('#btnAgregar').prop("disabled", false);
                         $('#btnActualizar').prop("disabled", true);
                         $('#btnEliminar').prop("disabled", true);
-
-
                         limpiarFormulario();
                         $('#txtFecha').val(date.format());
                         $("#ModalEventos").modal();
                     },
                     events: 'http://localhost:8082/Calendario/eventos.php',
-
                     eventClick:function(calEvent,jsEvent,view){
-
                       $('#btnAgregar').prop("disabled", true);
                       $('#btnActualizar').prop("disabled", false);
                       $('#btnEliminar').prop("disabled", false);
-
                       $('#tituloEvento').html(calEvent.title);
                       $('#txtDescripcion').val(calEvent.descripcion);
                       $('#txtID').val(calEvent.id);
                       $('#txtTitulo').val(calEvent.title);
                       $('#txtColor').val(calEvent.color);
-
                       FechaHora= calEvent.start._i.split(" ");
                       $('#txtFecha').val(FechaHora[0]);
                       $('#txtHora').val(FechaHora[1]);
-
                       $("#ModalEventos").modal();
                     },
                     editable: true,
@@ -112,7 +123,6 @@
                       $('#txtTitulo').val(calEvent.title);
                       $('#txtColor').val(calEvent.color);
                       $('#txtDescripcion').val(calEvent.descripcion);
-
                       var FechaHora= calEvent.start.format().split("T");
                       $('#txtFecha').val(FechaHora[0]);
                       $('#txtHora').val(FechaHora[1]);
@@ -228,7 +238,6 @@ $('#btnActualizar').click(function(){
   Recolectar();
   EnviarInfo('modificar',nuevoEvento)
 });
-
 function Recolectar(){
   nuevoEvento={
     id:$('#txtID').val(),
@@ -239,9 +248,7 @@ function Recolectar(){
     textColor: "#FFFFFF",
     end: $('#txtFecha').val() + " " + $('#txtHora').val(),
   };
-
 }
-
 function EnviarInfo(accion,objEvento){
   $.ajax({
     type: 'POST',

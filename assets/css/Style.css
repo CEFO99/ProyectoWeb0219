@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Jomolhari&display=swap');
+
+::before, ::after {
+    margin: 0.5;
+    padding: 0.5;
+    box-sizing: border-box;
+    font-size: calc(0.5em + 1vh);
+}
+body{
+  background-image: url("imagenes/wallpaper.jpg");
+  background-color: red;
+}
+
+/* El estilo base para moviles */
+body {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-weight: 200;
+
+
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+  }
+  header{
+    font-family: Helvetica;
+    width: 1150px;
+    margin: 0.5em;
+    justify-content: center;
+  }
+  
+
+  footer{
+    display: block;
+    box-sizing: initial;
+  }
+
+
+
+.container{
+
+    background-color: white;
+}
+ 
