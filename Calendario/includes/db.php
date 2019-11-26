@@ -17,6 +17,7 @@ class BD{
 
     function connect(){
         try{
+            /**coneccion a la base */
             $connection = "mysql:host" . $this->host . ";dbname=" . $this->db;;
             $options = [
                 PDO::ATTR_ERRMODE  => PDO::ERRMODE_EXCEPTION,

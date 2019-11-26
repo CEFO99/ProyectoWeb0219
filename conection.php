@@ -23,9 +23,9 @@ if(isset($_SESSION['user'])){
     }else{
         //echo "nombre de ususario y/o contraseña Incorrecta";
         $errorLogin = "nombre de ususario y/o contraseña Incorrecta";
-        include_once 'vistas/login.php';
+        include_once 'login.php';
     }
 }else{
     echo "login"; 
-    include_once 'vistas/login.php';
+    include_once 'login.php';
 }
