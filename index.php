@@ -25,7 +25,10 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-image: url('assets/imagenes/wallpaperp.jpg');">
+  
+
+
 <nav class="navbar navbar-dark bg-dark mb-4">
 <!--UCA logo-->
 <img src="assets/imagenes/ucalogo.png" alt="logoUCA" class="logof" width="50" height="50">
@@ -77,10 +80,10 @@
     </ul>
   </div>
 </nav>
-                <a href="/" class="navbar-brand">Reserva de Laboratorios UCA</a>
+                <a  class="navbar-brand text-white">Reserva de Laboratorios UCA</a>
                </nav >
 <!--Contenedor del calendario-->
-    <div class="container">      
+    <div class="container" style="background-color: white;">      
         <div class="row">
             <div class="col-20"><div id="Calendario"></div></div>
         </div>
@@ -221,8 +224,10 @@
     </div>
   </div>
 </div>
-<footer class="footer">
-        <p >Copyright 2019 Laboratorios UCA. All Rights Reserved</p>
+<footer  class="py-4 bg-dark text-white-50>">
+<div class="container text-center text-white">
+      <small>Copyright 2019 Laboratorios UCA. All Rights Reserved</small>
+    </div>
     </footer>
 <script>
 var nuevoEvento;
