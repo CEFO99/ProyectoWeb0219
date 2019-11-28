@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="assets/css/Style.css" > 
         
     <!--Scripts--> 
+    <script src="Calendario/js/calendar.js"></script>
+    <script src="Calendario/js/eventos.js"></script>
     <script src="Calendario/js/jquery.min.js"></script>
     <script src="Calendario/js/moment.min.js"></script>
     <script src="Calendario/js/fullcalendar.min.js"></script>
@@ -25,7 +27,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-image: url('assets/imagenes/wallpaperp.jpg');">
 <nav class="navbar navbar-dark bg-dark mb-4">
 <!--UCA logo-->
 <img src="assets/imagenes/ucalogo.png" alt="logoUCA" class="logof" width="50" height="50">
@@ -73,57 +75,58 @@
                 <a href="/" class="navbar-brand">Reserva de Laboratorios UCA</a>
                </nav >
 <!--Contenedor del calendario-->
-    <div class="container">      
+<div class="container" style="background-color: white;">      
         <div class="row">
             <div class="col-20"><div id="Calendario"></div></div>
         </div>
     </div>
+    <p></p>
 
     <script> 
-            $(document).ready(function(){
-                $('#Calendario').fullCalendar({
-                    header: {
-                        left: 'today, prev, next',
-                        center: 'title',
-                        right: 'month,agendaWeek,agendaDay'
-                    },
-                    dayClick:function(date, jsEvent, view){
-                        $('#btnAgregar').prop("disabled", false);
-                        $('#btnActualizar').prop("disabled", true);
-                        $('#btnEliminar').prop("disabled", true);
-                        limpiarFormulario();
-                        $('#txtFecha').val(date.format());
-                        $("#ModalEventos").modal();
-                    },
-                    events: 'http://localhost:8082/Calendario/eventos.php',
-                    eventClick:function(calEvent,jsEvent,view){
-                      $('#btnAgregar').prop("disabled", true);
-                      $('#btnActualizar').prop("disabled", false);
-                      $('#btnEliminar').prop("disabled", false);
-                      $('#tituloEvento').html(calEvent.title);
-                      $('#txtDescripcion').val(calEvent.descripcion);
-                      $('#txtID').val(calEvent.id);
-                      $('#txtTitulo').val(calEvent.title);
-                      $('#txtColor').val(calEvent.color);
-                      FechaHora= calEvent.start._i.split(" ");
-                      $('#txtFecha').val(FechaHora[0]);
-                      $('#txtHora').val(FechaHora[1]);
-                      $("#ModalEventos").modal();
-                    },
-                    editable: true,
-                    eventDrop:function(calEvent){
-                      $('#txtID').val(calEvent.id);
-                      $('#txtTitulo').val(calEvent.title);
-                      $('#txtColor').val(calEvent.color);
-                      $('#txtDescripcion').val(calEvent.descripcion);
-                      var FechaHora= calEvent.start.format().split("T");
-                      $('#txtFecha').val(FechaHora[0]);
-                      $('#txtHora').val(FechaHora[1]);
-                      Recolectar();
-                      EnviarInfo('modificar',nuevoEvento, true)
-                    }
-                });
-            }); 
+          $(document).ready(function(){
+    $('#Calendario').fullCalendar({
+        header: {
+            left: 'today, prev, next',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        dayClick:function(date, jsEvent, view){
+            $('#btnAgregar').prop("disabled", false);
+            $('#btnActualizar').prop("disabled", true);
+            $('#btnEliminar').prop("disabled", true);
+            limpiarFormulario();
+            $('#txtFecha').val(date.format());
+            $("#ModalEventos").modal();
+        },
+        events: 'http://localhost:8082/Calendario/eventos.php',
+        eventClick:function(calEvent,jsEvent,view){
+          $('#btnAgregar').prop("disabled", true);
+          $('#btnActualizar').prop("disabled", false);
+          $('#btnEliminar').prop("disabled", false);
+          $('#tituloEvento').html(calEvent.title);
+          $('#txtDescripcion').val(calEvent.descripcion);
+          $('#txtID').val(calEvent.id);
+          $('#txtTitulo').val(calEvent.title);
+          $('#txtColor').val(calEvent.color);
+          FechaHora= calEvent.start._i.split(" ");
+          $('#txtFecha').val(FechaHora[0]);
+          $('#txtHora').val(FechaHora[1]);
+          $("#ModalEventos").modal();
+        },
+        editable: true,
+        eventDrop:function(calEvent){
+          $('#txtID').val(calEvent.id);
+          $('#txtTitulo').val(calEvent.title);
+          $('#txtColor').val(calEvent.color);
+          $('#txtDescripcion').val(calEvent.descripcion);
+          var FechaHora= calEvent.start.format().split("T");
+          $('#txtFecha').val(FechaHora[0]);
+          $('#txtHora').val(FechaHora[1]);
+          Recolectar();
+          EnviarInfo('modificar',nuevoEvento, true)
+        }
+    });
+});  
 </script>
 
 
@@ -214,58 +217,13 @@
     </div>
   </div>
 </div>
-<footer class="footer">
-        <p >Copyright 2019 Laboratorios UCA. All Rights Reserved</p>
+<footer  class="py-4 bg-dark text-white-50>">	
+<div class="container text-center text-white">	
+      <small>Copyright 2019 Laboratorios UCA. All Rights Reserved</small>	
+    </div>	
     </footer>
 <script>
-var nuevoEvento;
-$('#btnAgregar').click(function(){
-  Recolectar();
-  EnviarInfo('agregar',nuevoEvento)
-});
-$('#btnEliminar').click(function(){
-  Recolectar();
-  EnviarInfo('eliminar',nuevoEvento)
-});
-$('#btnActualizar').click(function(){
-  Recolectar();
-  EnviarInfo('modificar',nuevoEvento)
-});
-function Recolectar(){
-  nuevoEvento={
-    id:$('#txtID').val(),
-    title: $('#txtTitulo').val(),
-    start: $('#txtFecha').val() + " " + $('#txtHora').val(),
-    color: $('#txtColor').val(),
-    descripcion: $('#txtDescripcion').val(),
-    textColor: "#FFFFFF",
-    end: $('#txtFecha').val() + " " + $('#txtHora').val(),
-  };
-}
-function EnviarInfo(accion,objEvento){
-  $.ajax({
-    type: 'POST',
-    url: 'eventos.php?accion='+accion,
-    data: objEvento,
-    success: function(msg){
-      if(msg){
-        $('#Calendario').fullCalendar('refetchEvents');
-          if(!modal){
-            $("#ModalEventos").modal('toggle');
-          }
-        }
-      },
-      error:function(){
-        alert("Hay un error..");
-      }
-  });
-}
-function limpiarFormulario(){
-  $('#txtID').val('');
-  $('#txtTitulo').val('');
-  $('#txtColor').val('');
-  $('#txtDescripcion').val('');
-}
+
 </script>
 
 </body>
