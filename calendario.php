@@ -1,7 +1,5 @@
 <?php
   require_once('includes/db.php');
-  // require_once('consultas.php');
-  // require_once('cargar.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,10 +13,6 @@
     <link rel="stylesheet" href="assets/css/Style.css" > 
         
     <!--Scripts--> 
-<<<<<<< HEAD
-=======
-    <script src="Calendario/js/calendar.js"></script>
->>>>>>> 52ec44cd506ab2cbc363a8a5ff6f4531ec09bd68
     <script src="Calendario/js/eventos.js"></script>
     <script src="Calendario/js/jquery.min.js"></script>
     <script src="Calendario/js/moment.min.js"></script>
@@ -85,60 +79,7 @@
             <div class="col-20"><div id="Calendario"></div></div>
         </div>
     </div>
-    <p></p>
 
-<<<<<<< HEAD
-=======
-    <script> 
-          $(document).ready(function(){
-    $('#Calendario').fullCalendar({
-        header: {
-            left: 'today, prev, next',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        dayClick:function(date, jsEvent, view){
-            $('#btnAgregar').prop("disabled", false);
-            $('#btnActualizar').prop("disabled", true);
-            $('#btnEliminar').prop("disabled", true);
-            limpiarFormulario();
-            $('#txtFecha').val(date.format());
-            $("#ModalEventos").modal();
-        },
-        events: 'http://localhost:8082/Calendario/eventos.php',
-        eventClick:function(calEvent,jsEvent,view){
-          $('#btnAgregar').prop("disabled", true);
-          $('#btnActualizar').prop("disabled", false);
-          $('#btnEliminar').prop("disabled", false);
-          $('#tituloEvento').html(calEvent.title);
-          $('#txtDescripcion').val(calEvent.descripcion);
-          $('#txtID').val(calEvent.id);
-          $('#txtTitulo').val(calEvent.title);
-          $('#txtColor').val(calEvent.color);
-          FechaHora= calEvent.start._i.split(" ");
-          $('#txtFecha').val(FechaHora[0]);
-          $('#txtHora').val(FechaHora[1]);
-          $("#ModalEventos").modal();
-        },
-        editable: true,
-        eventDrop:function(calEvent){
-          $('#txtID').val(calEvent.id);
-          $('#txtTitulo').val(calEvent.title);
-          $('#txtColor').val(calEvent.color);
-          $('#txtDescripcion').val(calEvent.descripcion);
-          var FechaHora= calEvent.start.format().split("T");
-          $('#txtFecha').val(FechaHora[0]);
-          $('#txtHora').val(FechaHora[1]);
-          Recolectar();
-          EnviarInfo('modificar',nuevoEvento, true)
-        }
-    });
-});  
-</script>
-
-
-
->>>>>>> 52ec44cd506ab2cbc363a8a5ff6f4531ec09bd68
 <!-- Modal -->
 <div class="modal fade" id="ModalEventos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -216,11 +157,7 @@
           <div class="form-group col-md-6">
             <label for="Estado">Estado: </label>
             <!-- <input class="form-control" type="text" name="txtEstado" id="txtEstado" placeholder="En proceso" readonly> -->
-<<<<<<< HEAD
             <select name="txtEstado" id="txtEstado" class="form-control">
-=======
-            <select name="txtEstado" id="txtEstado" class="form-control" disabled>
->>>>>>> 52ec44cd506ab2cbc363a8a5ff6f4531ec09bd68
 						  <option value="#BD6622" selected>En proceso</option>
 						  <option value="#4caf50">Aprobado</option>
               <option value="#f44336">Denegado</option>
@@ -244,20 +181,10 @@
   </div>
 </div>
 <footer  class="py-4 bg-dark text-white-50>">	
-<<<<<<< HEAD
   <div class="container text-center text-white">	
     <small>Copyright 2019 Laboratorios UCA. All Rights Reserved</small>	
   </div>	
 </footer>
-=======
-<div class="container text-center text-white">	
-      <small>Copyright 2019 Laboratorios UCA. All Rights Reserved</small>	
-    </div>	
-    </footer>
-<script>
-
-</script>
->>>>>>> 52ec44cd506ab2cbc363a8a5ff6f4531ec09bd68
 
 <script src="Calendario/js/calendario.js"></script>
 </body>

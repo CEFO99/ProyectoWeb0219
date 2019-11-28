@@ -1,5 +1,4 @@
 <?php
-/**se crea una clase con variables */
 class DB{
     private $host;
     private $db;
@@ -13,7 +12,6 @@ class DB{
         $this->password = '';
         $this->charset  = 'utf8mb4';
     }
-    /**se crea la funcion de la conexion  */
     function connect(){
     
         try{
@@ -26,7 +24,6 @@ class DB{
             $pdo = new PDO($connection, $this->user, $this->password, $options);
     
             return $pdo;
-            /**se envia un error en caso del fallo de la conexion */
         }catch(PDOException $e){
             print_r('Error connection: ' . $e->getMessage());
         }   
