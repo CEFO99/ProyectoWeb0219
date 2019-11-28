@@ -79,7 +79,6 @@
             </div>
             <div class="col-sm-10">
               <!-- Calendario -->
-              <div id="Calendario"></div>
             </div>
             <div class="col">
             </div>

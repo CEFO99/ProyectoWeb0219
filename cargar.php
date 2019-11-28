@@ -4,7 +4,7 @@ function cargarLabo1(){
     $consultas = new Consultas();
     $filas = $consultas->cargarL1();
 
-echo "<table class='table'>
+echo "<table class='table table-dark'>
     <thead>
     <tr>
         <th>Laboratorio</th>
@@ -40,7 +40,7 @@ function cargarLabo2(){
     $consultas = new Consultas();
     $filas = $consultas->cargarL2();
 
-echo "<table class='table'>
+echo "<table class='table table-dark'>
     <thead>
     <tr>
         <th>Laboratorio</th>
@@ -76,7 +76,7 @@ function cargarLabo3(){
     $consultas = new Consultas();
     $filas = $consultas->cargarL3();
 
-echo "<table class='table'>
+echo "<table class='table table-dark'>
     <thead>
     <tr>
         <th>Laboratorio</th>
@@ -112,7 +112,7 @@ function cargarOtro(){
     $consultas = new Consultas();
     $filas = $consultas->cargarOtro();
 
-echo "<table class='table'>
+echo "<table class='table table-dark'>
     <thead>
     <tr>
         <th>Laboratorio</th>

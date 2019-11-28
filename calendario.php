@@ -139,7 +139,7 @@
           </div>
           <div class="form-group col-md-4">  
             <label for="">Correo: </label> 
-            <input type="text" name="txtCorreo" id="txtCorreo" class="form-control" placeholder="Correo">
+            <input type="email" name="txtCorreo" id="txtCorreo" class="form-control" placeholder="Correo">
           </div>
           
           <div class="form-group col-md-4">  
