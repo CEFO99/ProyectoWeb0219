@@ -7,10 +7,25 @@ class User extends DB{
         $md5pass = md5($pass);
         $query = $this->connect()->prepare('SELECT * FROM usuarioUCA WHERE username = :user AND password = :pass');
         $query->execute(['user' => $user, 'pass' => $md5pass]);
-        if($query->rowCount()){
-            return true;
+        $row = $query->fetch(PDO::FETCH_NUM);
+        if($row == true){
+            // validar rol
+            $rol = $row[4];
+            $_SESSION['rol'] = $rol;
+            switch($_SESSION['rol']){
+                case 1:
+                    header('location: calendario.php');
+                break;
+    
+                case 2:
+                header('location: home.php');
+                break;
+    
+                default:
+            }
         }else{
-            return false;
+            // no existe el usuario
+            echo "El usuario o contraseña son incorrectos";
         }
     }
     public function setUser($user){

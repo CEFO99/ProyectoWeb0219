@@ -6,18 +6,6 @@ include_once 'includes/user_session.php';
 $userSession = new UserSession();
 $user = new User();
 
-if(isset($_SESSION['rol'])){
-    switch($_SESSION['rol']){
-        case 1:
-            header('location: calendario.php');
-        break;
-        case 2:
-        header('location: home.php');
-        break;
-        default:
-    }
-}
-
 if(isset($_SESSION['user'])){
     //echo "hay sesion";
     $user->setUser($userSession->getCurrentUser());
