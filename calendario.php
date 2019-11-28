@@ -40,39 +40,35 @@
     <ul class="navbar-nav mr-auto">
 
 <!--Inicio-->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Inicio
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Encargado</a>
-          <a class="dropdown-item" href="#">Instructores</a>
-        </div>
-      </li>
+
+<li class="nav-item">
+        <a class="nav-link" href="calendario.php">Inicio</a>
+      </li>   
 <!--Laboratorios-->
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Laboratorios
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Laboratorio L1</a>
-          <a class="dropdown-item" href="#">Laboratorio L2</a>
-          <a class="dropdown-item" href="#">Laboratorio L3</a>
-          </div>
+          <a class="dropdown-item" href="Labo1.php">Laboratorio L1</a>
+          <a class="dropdown-item" href="Labo2.php">Laboratorio L2</a>
+          <a class="dropdown-item" href="Labo3.php">Laboratorio L3</a>
+          <a class="dropdown-item" href="otro.php">Otro</a>
+        </div>
       </li>
-<!--Cerrar-->
-      <li class="nav-item">
-        <a class="nav-link" href="includes/logout.php">Cerrar</a>
-      </li>   
 <!-- Ayuda -->
       <li class="nav-item">
-        <a class="nav-link" href="#">Ayuda</a>
+        <a class="nav-link" data-toggle="modal" data-target="#ModalAyuda">Ayuda</a>
+      </li>   
+<!--Cerrar-->
+<li class="nav-item">
+        <a class="nav-link" href="includes/logout.php">Cerrar Sesion</a>
       </li>   
     </ul>
   </div>
 </nav>
-                <a href="/" class="navbar-brand">Reserva de Laboratorios UCA</a>
-               </nav >
+    <a href="/" class="navbar-brand">Reserva de Laboratorios UCA</a>
+</nav >
 <!--Contenedor del calendario-->
 <div class="container" style="background-color: white;">      
         <div class="row">
@@ -80,8 +76,8 @@
         </div>
     </div>
 
-<!-- Modal -->
-<div class="modal fade" id="ModalEventos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal de calendario-->
+<div class="modal fade" id="ModalEventos" tabindex="-1" role="dialog" aria-labelledby="ModalEventos" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -117,6 +113,8 @@
             <select class="form-control" id="txtTipo" placeholder="Seleccione">
               <option value="Estudio">Estudio</option>
               <option value="Ocio">Ocio</option>
+              <option value="Charla">Charla</option>
+              <option value="Instructoria">Instructoria</option>
               <option value="Otro">Otro</option>
             </select>
           </div>
@@ -149,19 +147,19 @@
             <input type="text" name="txtPersona" id="txtPersona" class="form-control" placeholder="Numero de personas">
           </div>
           <div class="form-group col-md-3">
-            <label for="">Hora Inicio: </label><input type="text" name="txtHoraI" id="txtHoraI" class="form-control">
+            <label for="">Hora Inicio: </label><input type="time" name="txtHoraI" id="txtHoraI" class="form-control">
           </div>
           <div class="form-group col-md-3">
-            <label for="">Hora Fin: </label><input type="text" name="txtHoraF" id="txtHoraF" class="form-control">
+            <label for="">Hora Fin: </label><input type="time" name="txtHoraF" id="txtHoraF" class="form-control">
           </div>
           <div class="form-group col-md-6">
             <label for="Estado">Estado: </label>
             <!-- <input class="form-control" type="text" name="txtEstado" id="txtEstado" placeholder="En proceso" readonly> -->
             <select name="txtEstado" id="txtEstado" class="form-control">
-						  <option value="#BD6622" selected>En proceso</option>
+						  <option value="#E8781C" selected>En proceso</option>
 						  <option value="#4caf50">Aprobado</option>
               <option value="#f44336">Denegado</option>
-              <option value="#f44336">Cancelado</option>
+              <option value="#F5E839">Cancelado</option>
 						</select>
           </div>
         </div>
@@ -172,14 +170,42 @@
       
       </div>
       <div class="modal-footer">
-        <button type="button" id="btnAgregar" class="btn btn-success">Agregar</button>
-        <button type="button" id="btnActualizar" class="btn btn-warning">Actualizar</button>
-        <button type="button" id="btnEliminar" class="btn btn-danger">Eliminar</button>
+        <button type="button" id="btnAgregar" class="btn btn-success" data-dismiss="modal">Agregar</button>
+        <button type="button" id="btnActualizar" class="btn btn-warning" data-dismiss="modal">Actualizar</button>
+        <button type="button" id="btnEliminar" class="btn btn-danger" data-dismiss="modal">Eliminar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<!-- Modal ayuda-->
+<div class="modal fade" id="ModalAyuda" tabindex="-1" role="dialog" aria-labelledby="ModalAyuda" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalAyuda">Información sobre Estado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Colores significado</p>
+        <p>Verde = Aprobado</p>
+        <p>Rojo = Denegado</p>
+        <p>Anaranjado = En proceso</p>
+        <p>Amarillo = Cancelado</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <footer  class="py-4 bg-dark text-white-50>">	
   <div class="container text-center text-white">	
     <small>Copyright 2019 Laboratorios UCA. All Rights Reserved</small>	

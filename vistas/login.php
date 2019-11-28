@@ -12,7 +12,7 @@
     <form action="" method= "POST">
         <h2> Iniciar Sesion</h2>
         <input type="text" placeholder="Usuario" name ="username">
-        <input type="text" placeholder="&#128272; contraseña"  name="password"></p>
+        <input type="password" placeholder="&#128272; contraseña"  name="password"></p>
         <input type="submit" value="iniciar Sesion">
 </form>
 </body>

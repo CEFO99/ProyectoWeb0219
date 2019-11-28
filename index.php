@@ -26,6 +26,5 @@ if(isset($_SESSION['user'])){
         include_once 'vistas/login.php';
     }
 }else{
-    echo "login"; 
     include_once 'vistas/login.php';
 }

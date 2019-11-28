@@ -18,7 +18,7 @@ $(document).ready(function(){
             $("#ModalEventos").modal();
         },
         // manda a llamar todos los querys para ejecutarse
-        events: '../../eventos.php',
+        events: 'eventos.php',
         // funcion para traer los datos de una reserva en especifica 
         eventClick:function(calEvent,jsEvent,view){
 
