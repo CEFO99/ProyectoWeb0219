@@ -1,9 +1,9 @@
 # Integrantes
 
-Cesar Edgardo Figueroa Orellana
-Francisco Jose Cornejo Escalante
-Juan Carlos Vazquez Hernandez
-Victor Edenilson Morales Constanza
+* Cesar Edgardo Figueroa Orellana
+* Francisco Jose Cornejo Escalante
+* Juan Carlos Vazquez Hernandez
+* Victor Edenilson Morales Constanza
 
 
 # Reserva Laboratorio UCA
