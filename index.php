@@ -2,26 +2,30 @@
 
 include_once 'includes/user.php';
 include_once 'includes/user_session.php';
-
+/**se inica la nueva sesion */ 
 $userSession = new UserSession();
 $user = new User();
+<<<<<<< HEAD
 
+=======
+/**condicion si existe la sesion de user  */
+>>>>>>> 52ec44cd506ab2cbc363a8a5ff6f4531ec09bd68
 if(isset($_SESSION['user'])){
-    //echo "hay sesion";
+    //"hay sesion";
     $user->setUser($userSession->getCurrentUser());
     include_once 'calendario.php';
 }else if(isset($_POST['username']) && isset($_POST['password'])){
-    //echo "validacion de login";
+    //"validacion de login";
     $userForm = $_POST['username'];
     $passForm = $_POST['password'];
 
     if($user->userExists($userForm, $passForm)){
-        //echo "usuario validado";
+        //"usuario validado";
         $userSession->setCurrentUser($userForm);
         $user->setUser($userForm);
         include_once 'calendario.php';
     }else{
-        //echo "nombre de ususario y/o contraseña Incorrecta";
+        //"nombre de ususario y/o contraseña Incorrecta";
         $errorLogin = "nombre de usuario y/o contraseña Incorrecta";
         include_once 'vistas/login.php';
     }
